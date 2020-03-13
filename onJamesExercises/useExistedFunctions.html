@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>USE EXISTED FUNCTIONS</title>
+</head>
+<body>
+<h1>exercise 01</h1>
+<button type="button" onclick="exercise01()">DISPLAY GIVEN ARRAY</button>
+<div id="display1"></div>
+<h1>exercise 02</h1>
+<input type="number" id="numberInput">
+<button type="button" onclick="exercise02()">SHOW RESULT</button>
+<div id="display2"></div>
+<h1>exercise 03</h1>
+<input type="text" id="textInput">
+<button type="button" onclick="exercise03()">SWAP THEM CASES!</button>
+<div id="display3"></div>
+<script>
+    function exercise01() {
+        let disp='';
+        let myColors=["Red","Green","Blue","Pink","Grey","Black","White","Yellow"];
+        for (let i = 0; i <myColors.length ; i++) {
+            disp+=myColors[i];
+            disp+=', ';
+        }
+        document.getElementById('display1').innerHTML=disp;
+    }
+    function exercise02() {
+        let num = +document.getElementById('numberInput').value;
+        let str=Array.from(String(num));
+        for (let i = 0; i <str.length ; i++) {
+            if (str[i]%2===0){
+                str[i]=str[i]-2*str[i];
+            }document.getElementById('display2').innerHTML+=str[i];
+        }
+    }
+    function exercise03() {
+        let text=document.getElementById('textInput').value;
+        let str=Array.from(String(text));
+        let UPPER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        let LOWER = 'abcdefghijklmnopqrstuvwxyz';
+        let result = [];
+        for (let i = 0; i <str.length ; i++) {
+            if(UPPER.indexOf(str[i])!==-1){
+                result.push(str[i].toLowerCase());
+            }else if(LOWER.indexOf(str[i])!==-1){
+                result.push(str[i].toUpperCase());
+            }else result.push(str[i]);
+        }
+        document.getElementById('display3').innerHTML=result;
+    }
+</script>
+</body>
+</html>
