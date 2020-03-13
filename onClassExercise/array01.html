@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ARRAY HOMEWORK</title>
+    <link href="https://fonts.googleapis.com/css?family=Spartan&display=swap" rel="stylesheet">
+</head>
+<style>
+    body {
+        font-family: 'Spartan', serif;
+        font-size: 25px;
+    }
+    button {
+        width: auto;
+    }
+</style>
+<body>
+<fieldset>
+    <legend style="text-align: center;"><h2>SUM UP ALL THE THING!</h2></legend>
+    <!--Nhập số phần tử của mảng, sinh ngẫu nhiên mảng, tính tổng phần tử của mảng-->
+    <input type="number" placeholder="Input Array's Length" id="inputArrayLength">
+    <button type="button" onclick="initArray()">GENERATE IT!</button>
+    <button type="button" onclick="sumArray()">SUM IT!</button>
+    <button type="button" onclick="sumArrayEven()">SUM THE EVENS!</button>
+    <button type="button" onclick="sumArrayOdd()">SUM THE ODDS!</button>
+    <button type="button" onclick="sumArraySquares()">SUM THE SQUARE NUMBERS!</button>
+    <button type="button" onclick="sumArrayPrime()">SUM THE PRIME NUMBERS!</button>
+    <button type="button" onclick="sortArray()">SORT THEM UP!</button>
+    <button type="button" onclick="sortOddUpEvenDown()">SORT THEM ODD UP EVEN DOWN!</button>
+    <div id="display"></div>
+    <div id="display2"></div>
+    <div id="display3"></div>
+    <div id="display4"></div>
+    <div id="display5"></div>
+    <div id="display6"></div>
+    <div id="display7"></div>
+    <div id="display8"></div>
+    <div id="display9"></div>
+    <div id="display10"></div>
+    <script>
+        let myArray = [];
+        let arrayOdd=[];
+        let arrayEven=[];
+        function initArray() {
+            myArray=[];
+            let count = +document.getElementById('inputArrayLength').value;
+            for (let i = 0; i < count; i++) {
+
+                myArray.push(Math.round(100 * (Math.random())));
+            }
+            generateArray();
+            splitArray();
+        }
+
+        function generateArray() {
+            let html = '';
+
+            for (let i = 0; i < myArray.length; i++) {
+
+                html += myArray[i];
+                html += '; ';
+
+            }
+            document.getElementById('display').innerHTML ='Here you go: '+ html;
+
+        }
+
+        function sumArray() {
+            let html2 = 0;
+            for (let i = 0; i < myArray.length; i++) {
+                html2 += myArray[i];
+
+            }
+            document.getElementById('display2').innerHTML = 'The sum is: ' + '<strong>' + html2 + '</strong>';
+        }
+
+        function sumArrayEven() {
+            let sumEven = 0;
+            for (let i = 0; i < myArray.length; i++) {
+                if (myArray[i] % 2 === 0) {
+                    sumEven += myArray[i];
+                }
+            }
+            document.getElementById('display3').innerHTML = "The evens's sum is: " + '<strong>' + sumEven + '</strong>';
+        }
+
+        function sumArrayOdd() {
+            let sumOdd = 0;
+            for (let i = 0; i < myArray.length; i++) {
+                if (myArray[i] % 2 !== 0) {
+                    sumOdd += myArray[i];
+                }
+            }
+            document.getElementById('display4').innerHTML = "The odds's sum is: " + '<strong>' + sumOdd + '</strong>';
+        }
+
+        function sumArraySquares() {
+            let sumSquare = 0;
+            for (let i = 0; i < myArray.length; i++) {
+                if (Math.sqrt(myArray[i]) % 1 === 0) {
+                    sumSquare += myArray[i];
+                }
+            }
+            document.getElementById('display5').innerHTML = "The Square numbers's sum is: " + '<strong>' + sumSquare + '</strong>';
+        }
+
+        function checkPrime(num) {
+            for (let i = 2; i < num; i++) {
+                if (num % i === 0)
+                    return false;
+            }
+            return true;
+        }
+
+        function sumArrayPrime() {
+            let sumPrime = 0;
+            for (let i = 0; i < myArray.length; i++) {
+                if (checkPrime(myArray[i])) {
+                    sumPrime += myArray[i];
+                }
+            }
+            document.getElementById('display6').innerHTML = "The Prime numbers's sum is: " + '<strong>' + sumPrime + '</strong>';
+        }
+
+        function sortArray() {
+            let sortArray = '';
+            for (let i = 0; i < myArray.length; i++) {
+                myArray.sort(function (a, b) {
+                    return a - b
+                });
+                sortArray += myArray[i];
+                sortArray += '; ';
+            }
+            document.getElementById('display7').innerHTML = "We can sort them for you, alphabet style! Here you go: " + '<strong>' + sortArray + '</strong>';
+
+        }
+
+       /* function sortOddUp() {
+            let sortOdd = '';
+            let myArrayOdd = [];
+            for (let i = 0; i < myArray.length; i++) {
+                if (i % 2 !== 0) {
+                    myArrayOdd.push(myArray[i]);
+                    myArrayOdd.sort(function (a, b) {
+                        return a - b
+                    });
+                    sortOdd += myArrayOdd[i];
+                    sortOdd += '; ';
+                }
+            }
+            document.getElementById('display8').innerHTML = "Want the Odds up? Here you go: " + '<strong>' + sortOdd + '</strong>';
+        }*/
+        function splitArray() {
+
+            for (let i = 0; i <myArray.length ; i++) {
+                if(myArray[i]%2===0){
+                    arrayEven.push(myArray[i]);
+                }else arrayOdd.push(myArray[i]);
+            }
+        }
+        function sortOddUp(arr) {
+            arr.sort(function (a,b) {
+                return a-b;
+            });
+            return arr;
+        }
+        function sortEvenDown(arr) {
+            arr.sort(function (a,b) {
+                return b-a;
+            });
+            return arr;
+        }
+        function joinArray(arr1,arr2) {
+
+            return arr1.concat(arr2);
+
+        }
+        function sortOddUpEvenDown() {
+            arrayOdd=sortOddUp(arrayOdd);
+            arrayEven=sortEvenDown(arrayEven);
+            joinArray(arrayOdd,arrayEven);
+            document.getElementById('display9').innerHTML="Them odd numbers are sorted up here: "+arrayOdd;
+            document.getElementById('display10').innerHTML="Them even numbers are sorted down here: "+arrayEven;
+        }
+    </script>
+</fieldset>
+</body>
+</html>
