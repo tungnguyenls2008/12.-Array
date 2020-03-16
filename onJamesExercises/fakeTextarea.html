@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FAKE IT TILL YOU MAKE IT</title>
+</head>
+<fieldset style="text-align: center">
+    <legend style="text-align: center"><h1>FAKE IT LIKE IT'S YOURS!</h1></legend>
+    <textarea id="fake" cols="40" rows="10" onkeydown="fakeIt()"></textarea>
+</fieldset>
+<body>
+<script>
+    let fakeText=['','I',"'",'m',' ','s','t','u','p','i','d',' ','a','n','d',' ','I',' ','k','n','o','w',' ','i','t','!',' ','b','l','e','h','.','.']
+    let n='';
+    function fakeIt() {
+    let t=document.getElementById('fake').value;
+    let l=t.length;
+    if(l>0){
+        for (let i = 1; i <=l ; i++) {
+            n= n+fakeText[i];
+            if(i===32){
+                document.getElementById('fake').value='';
+                n='';
+            }
+        }
+    }document.getElementById('fake').value=n;
+    n='';
+    setTimeout("fakeIt()",1);
+    }
+</script>
+</body>
+</html>
