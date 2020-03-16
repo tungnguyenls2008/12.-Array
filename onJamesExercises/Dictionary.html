@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>I have a big DICTIONARY</title>
+</head>
+<body>
+<input type="text" id="english" placeholder="Type in your English word">
+<button type="button" onclick="translateIt()">TRANSLATE INTO VIETNAMESE</button>
+<div id="result"></div>
+<script>
+    function translateIt() {
+        let eng = ["I", "you", "he", "she", "it", "play", "learn", "word", "code", "football"];
+        let vie = ["Tôi", "bạn", "anh ấy", "cô ấy", "nó", "chơi", "học", "từ ngữ", "mã", "bóng đá"];
+        let i = document.getElementById('english').value;
+        for (let j = 0; j < eng.length; j++) {
+            {
+                if (i === eng[j]) {
+                    console.log(eng[j]);
+                    document.getElementById('result').innerHTML = eng[j] + " means " + vie[j]; break;
+                } else document.getElementById('result').innerHTML = "I don't know that word yet.";
+            }
+        }
+    }
+</script>
+</body>
+</html>
